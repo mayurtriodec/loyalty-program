@@ -32,4 +32,16 @@ class User < ApplicationRecord
   def normalize_email
     self.email = email.downcase.strip
   end
+
+  def monthly_transaction_points
+    domestic_amount = transactions.processed.domestic.created_in_month.sum(:amount)
+    international_amount = transactions.processed.international.created_in_month.sum(:amount)
+    total_points = domestic_amount * Reward::LOCAL_MULTIPLIER + international_amount * Reward::INTERNATIONAL_MULTIPLIER
+
+    ((total_points) * Reward::BASE_MULTIPLIER).round(2)
+  end
+
+  def first_transaction_date
+    transactions.processed.order(:created_at).pick(:created_at)&.to_date
+  end
 end

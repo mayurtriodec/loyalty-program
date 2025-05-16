@@ -29,11 +29,17 @@ gem "grape-swagger"
 gem "grape"
 gem "jsonapi-serializer"
 
+# State Machine
+gem "aasm"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", require: false
+
+# Scheduling jobs
+gem "whenever", require: false
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
@@ -42,7 +48,7 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
-#  gem "rack-cors"
+gem "rack-cors"
 
 # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
 # gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -53,4 +59,16 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Used for running the test scripts
+  gem "rspec-rails"
+
+  # Used to automatically load factories
+  gem "factory_bot_rails"
+
+  # Used to Create dynamic values
+  gem "faker"
+
+  # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
+  gem "pry"
 end
