@@ -150,7 +150,7 @@ GEM
       activesupport (>= 4.2)
     jwt (2.10.1)
       base64
-    kamal (2.6.0)
+    kamal (2.6.1)
       activesupport (>= 7.0)
       base64 (~> 0.2)
       bcrypt_pbkdf (~> 1.0)
