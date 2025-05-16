@@ -14,4 +14,22 @@ class User < ApplicationRecord
       message: "must be a valid email address"
     }
 
+  before_validation :normalize_email
+  before_create :regenerate_jti
+
+  def regenerate_jti
+    self.jti = SecureRandom.uuid
+  end
+
+  def invalidate_jti
+    update(jti: SecureRandom.uuid)
+  end
+
+  def valid_jti?(token_jti)
+    jti == token_jti
+  end
+
+  def normalize_email
+    self.email = email.downcase.strip
+  end
 end
